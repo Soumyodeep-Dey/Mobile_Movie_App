@@ -1,22 +1,22 @@
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  ScrollView,
-  Image,
-  FlatList,
-} from "react-native";
 import { useRouter } from "expo-router";
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
 
-import useFetch from "@/services/usefetch";
 import { fetchMovies } from "@/services/api";
 import { getTrendingMovies } from "@/services/appwrite";
+import useFetch from "@/services/usefetch";
 
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 
-import SearchBar from "@/components/SearchBar";
 import MovieCard from "@/components/MovieCard";
+import SearchBar from "@/components/SearchBar";
 import TrendingCard from "@/components/TrendingCard";
 
 const Index = () => {
@@ -82,7 +82,7 @@ const Index = () => {
                   renderItem={({ item, index }) => (
                     <TrendingCard movie={item} index={index} />
                   )}
-                  keyExtractor={(item) => item.movie_id.toString()}
+                  keyExtractor={(item, index) => `${item.movie_id}-${index}`}
                   ItemSeparatorComponent={() => <View className="w-4" />}
                 />
               </View>
